@@ -1,0 +1,42 @@
+@import "variable";
+header{
+  height: $headerHeight;
+  width: 100vw;
+  background-color: #aaaaaa;
+  display: flex;
+  position: relative;
+  .title{
+    height: $headerHeight;
+    width: 100%;
+    display: flex;
+    position: relative;
+    &__logo{
+      width: 200px;
+      padding: 10px;
+      font-size: 40px;
+      position: absolute;
+      bottom: 0;
+    }
+    &__sub{
+      padding: 10px;
+      font-size: 20px;
+      position: absolute;
+      bottom: 0;
+      left: 200px;
+    }
+  }
+  .user_menu{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    display: flex;
+    &__login{
+      width: 70px;
+      margin-right: 10px;
+    }
+    &__setting{
+      width: 100px;
+    }
+  }
+}

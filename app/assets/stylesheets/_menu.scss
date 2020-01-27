@@ -1,0 +1,16 @@
+ul.menu{
+  width: 150px;
+  list-style: none;
+  background-color: #eeeeee;
+  font-size: 12px;
+  padding: 5px;
+  top: 70%;
+  right: -250px;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50% -50%);
+  position: absolute;
+  li{
+    margin: 5px;
+    height: 15px;
+  }
+}

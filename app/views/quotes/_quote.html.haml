@@ -1,0 +1,36 @@
+.quote
+  .quote__header
+    .quote__header__btns
+      .btn
+        Q
+      .btn
+        G
+      .btn
+        D
+  .quote__content
+    .quote__content__left
+      - if @quote.img.present?
+        = image_tag quote.img, size: "100x100"
+      - elsif @quote.person.image.present?
+        = image_tag quote.person.image, size: "100x100"
+      - elsif @quote.document.image.present?
+        = image_tag quote.document.image, size: "100x100"
+    .quote__content__text
+      "
+      = @quote.text
+      "
+      - if @quote.translate.present?
+        .quote__content__text__jp
+          = @quote.translate
+    .quote__content__origin
+      .origin__name
+        = @quote.person.name
+      - if @quote.document.title.present?
+        .origin__document
+          = @quote.document.title
+  .quote__footer
+    .quote__footer__like
+      .btn
+        L
+      .quote__footer__like__times
+        = @quote.likes

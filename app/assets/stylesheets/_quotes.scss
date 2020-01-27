@@ -1,0 +1,70 @@
+
+.quote{
+  width: 70vw;
+  margin: 10px auto;
+  background-color: #ffffff;
+  border: 2px solid;
+  border-color: #dddddd;
+  padding: 15px;
+  opacity: 90%;
+  &__header{
+    position: relative;
+    height: 20px;
+    &__btns{
+      width: 90px;
+      display: flex;
+      position: absolute;
+      right: 15px;
+    }
+  }
+  &__content{
+    padding: 10px 0;
+    display: flex;
+    position: relative;
+    &__left{
+      height: 100px;
+      width: 100px;
+    }
+    &__text{
+      font-size: 17px;
+      padding: 10px;
+      &__jp{
+        margin-top: 15px;
+        font-size: 13px;
+        color: #666666;
+      }
+    }
+    &__origin{
+      height: 20px;
+      font-size: 13px;
+      position: absolute;
+      bottom: 0;
+      right: 15px;
+      &__name{
+      }
+      &__document{
+      }
+    }
+  } 
+  &__footer{
+    height: 20px;
+    &__like{
+      height: 20px;
+      display: flex;
+      &__times{
+        margin-top: 5px;
+        height: 15px;
+        &::after{
+          content: 'likes';
+        }
+      }
+    }
+  }
+}
+.btn{
+  height: 20px;
+  width: 20px;
+  margin: 0 5px;
+  background-color: red;
+  display: flex;
+}

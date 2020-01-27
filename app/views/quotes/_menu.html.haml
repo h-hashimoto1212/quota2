@@ -1,0 +1,13 @@
+%ul.menu
+  %li.similar_quote
+    find similar quotes
+  %li.other_quote
+    = link_to "reload quote", quotes_path
+  %li.new_quote
+    = link_to "new quote", new_quote_path
+  %li.edit_quote
+    = link_to "edit quote", edit_quote_path(@quote.id)
+  %li.comment
+    post a comment
+  %li.user
+    find friends
