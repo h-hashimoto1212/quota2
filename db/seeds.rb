@@ -21,6 +21,7 @@ end
 10.times do
   Quote.create(
     text: Faker::Quote.famous_last_words,
+    description: nil
     selfquote: true,
     quota_id: Faker::Number.within(range: 1..10),
     author_id: nil,
@@ -37,6 +38,7 @@ Document.create(
 5.times do
   Quote.create(
     text: Faker::TvShows::DumbAndDumber.quote,
+    description: nil
     selfquote: false,
     quota_id: Faker::Number.within(range: 2..10),
     author_id: nil,

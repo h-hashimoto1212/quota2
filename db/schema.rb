@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_27_124548) do
+ActiveRecord::Schema.define(version: 2020_01_29_080536) do
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2020_01_27_124548) do
     t.bigint "quota_id"
     t.bigint "author_id"
     t.bigint "document_id"
+    t.text "description"
     t.index ["author_id"], name: "index_quotes_on_author_id"
     t.index ["document_id"], name: "index_quotes_on_document_id"
     t.index ["quota_id"], name: "index_quotes_on_quota_id"
