@@ -4,10 +4,12 @@ whether someone famous or not, as well as themselves
 
 # Database
 - Quotas(works as user)
-|-----|-----|------|----------|
-|PK   |id   |      |          |
-|     |name |string|null:false|
-|     |email|string|unique    |
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | name        | string  | null:false |
+|     | email       | string  |            |
 has_many quotes
 has_many comments
 has_many evaluates
@@ -16,14 +18,16 @@ has_many skin_quotas
 has_many pictures
 
 - Quotes
-|-----|------------|-------|----------|
-|PK   |id          |       |          |
-|     |text        |text   |null:false|
-|     |description |text   |          |
-|     |selfquote   |boolean|          |
-|FK   |quota_id    |integer|          |
-|FK   |document_id |integer|          |
-|FK   |author_id   |integer|          |
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | text        | text    | null:false |
+|     | description | text    |            |
+|     | selfquote   | boolean |            |
+| FK  | quota_id    | integer |            |
+| FK  | document_id | integer |            |
+| FK  | author_id   | integer |            |
 has_many pictures
 has_many evaluates
 has_many comments
@@ -32,48 +36,60 @@ belongs_to author
 belongs_to document
 
 - Documents
-|-----|-----|------|----------|
-|PK   |id   |      |          |
-|     |name |string|null:false|
-|     |date |string|          |
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | name        | string  | null:false |
+|     | date        | string  |            |
 has_many comments
 has_many pictures
 belongs_to author
 
 - Authors
-|-----|-----|------|----------|
-|PK   |id   |      |          |
-|     |name |string|null:false|
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | name        | string  | null:false |
 has_many comments
 has_many pictures
 has_many documents
 
 - Skins
-|-----|------------|-------|----------|
-|PK   |id          |       |          |
-|     |name        |string |null:false|
-|     |description |text   |null:false|
-|     |enabled     |boolean|          |
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | name        | string  | null:false |
+|     | description | text    | null:false |
+|     | enabled     | boolean |            |
 has_many quotas
 has_many skin_quotas
 
 - Pictures
-|-----|-----|------|----------|
-|PK   |id   |      |          |
-|     |image|string|null:false|
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | image       | string  | null:false |
 belongs_to imageable, polymorphic: true
 
 - Evaluates
-|-----|--------|-------|----------|
-|PK   |id      |       |          |
-|FK   |quota_id|integer|          |
-|     |like    |boolean|          |
-|     |dislike |boolean|          |
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+| FK  |quota_id     | integer |            |
+|     | like        | boolean |            |
+|     | dislike     | boolean |            |
 belongs_to evaluatable, polymorphic: true
 
 - Comments
-|-----|--------|-------|----------|
-|PK   |id      |       |          |
-|FK   |quota_id|integer|          |
-|     |text    |text   |null:false|
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+| FK  |quota_id     | integer |            |
+|     | text        | text    | null:false |
 belongs_to commentable, polymorphic: true
