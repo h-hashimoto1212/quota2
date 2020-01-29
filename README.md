@@ -11,12 +11,12 @@ whether someone famous or not, as well as themselves
 |     | name        | string  | null:false |
 |     | email       | string  |            |
 
-has_many quotes
-has_many comments
-has_many evaluates
-has_many skins
-has_many skin_quotas
-has_many pictures
+has_many quotes  
+has_many comments  
+has_many evaluates  
+has_many skins  
+has_many skin_quotas  
+has_many pictures  
 
 - Quotes
 
@@ -30,12 +30,12 @@ has_many pictures
 | FK  | document_id | integer |            |
 | FK  | author_id   | integer |            |
 
-has_many pictures
-has_many evaluates
-has_many comments
-belongs_to quota
-belongs_to author
-belongs_to document
+has_many pictures  
+has_many evaluates  
+has_many comments  
+belongs_to quota  
+belongs_to author  
+belongs_to document  
 
 - Documents
 
@@ -45,9 +45,9 @@ belongs_to document
 |     | name        | string  | null:false |
 |     | date        | string  |            |
 
-has_many comments
-has_many pictures
-belongs_to author
+has_many comments  
+has_many pictures  
+belongs_to author  
 
 - Authors
 
@@ -56,9 +56,9 @@ belongs_to author
 | PK  | id          | integer |            |
 |     | name        | string  | null:false |
 
-has_many comments
-has_many pictures
-has_many documents
+has_many comments  
+has_many pictures  
+has_many documents  
 
 - Skins
 
@@ -69,8 +69,8 @@ has_many documents
 |     | description | text    | null:false |
 |     | enabled     | boolean |            |
 
-has_many quotas
-has_many skin_quotas
+has_many quotas  
+has_many skin_quotas  
 
 - Pictures
 
@@ -79,7 +79,7 @@ has_many skin_quotas
 | PK  | id          | integer |            |
 |     | image       | string  | null:false |
 
-belongs_to imageable, polymorphic: true
+belongs_to imageable, polymorphic: true  
 
 - Evaluates
 
@@ -90,7 +90,7 @@ belongs_to imageable, polymorphic: true
 |     | like        | boolean |            |
 |     | dislike     | boolean |            |
 
-belongs_to evaluatable, polymorphic: true
+belongs_to evaluatable, polymorphic: true  
 
 - Comments
 
@@ -100,4 +100,4 @@ belongs_to evaluatable, polymorphic: true
 | FK  |quota_id     | integer |            |
 |     | text        | text    | null:false |
 
-belongs_to commentable, polymorphic: true
+belongs_to commentable, polymorphic: true  
