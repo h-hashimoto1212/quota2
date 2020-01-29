@@ -12,16 +12,16 @@ Quota.create(
 )
 
 9.times do
-  Quota.create(
+  Quota.create!(
     name: "#{Faker::Name.first_name}#{Faker::Number.number(digits: 4)}",
     email: Faker::Internet.email
   )
 end
 
 10.times do
-  Quote.create(
+  Quote.create!(
     text: Faker::Quote.famous_last_words,
-    description: nil
+    description: nil,
     selfquote: true,
     quota_id: Faker::Number.within(range: 1..10),
     author_id: nil,
@@ -29,22 +29,19 @@ end
   )
 end
 
-Document.create(
+Document.create!(
   id: 1,
   name: "Dumb And Dumber",
   date: "1994"
 )
 
 5.times do
-  Quote.create(
+  Quote.create!(
     text: Faker::TvShows::DumbAndDumber.quote,
-    description: nil
+    description: nil,
     selfquote: false,
     quota_id: Faker::Number.within(range: 2..10),
     author_id: nil,
     document_id: 1
   )
 end
-
-
-
