@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_094113) do
 
   create_table "skins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+    t.text "description"
     t.boolean "enabled"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
