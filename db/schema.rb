@@ -10,12 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_080536) do
+ActiveRecord::Schema.define(version: 2020_01_29_094113) do
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "quota_id"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.text "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["quota_id"], name: "index_comments_on_quota_id"
   end
 
   create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -25,6 +36,18 @@ ActiveRecord::Schema.define(version: 2020_01_29_080536) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_documents_on_author_id"
+  end
+
+  create_table "evaluates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "quota_id"
+    t.string "evaluatable_type"
+    t.bigint "evaluatable_id"
+    t.boolean "like"
+    t.boolean "dislike"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["evaluatable_type", "evaluatable_id"], name: "index_evaluates_on_evaluatable_type_and_evaluatable_id"
+    t.index ["quota_id"], name: "index_evaluates_on_quota_id"
   end
 
   create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -57,8 +80,28 @@ ActiveRecord::Schema.define(version: 2020_01_29_080536) do
     t.index ["quota_id"], name: "index_quotes_on_quota_id"
   end
 
+  create_table "skin_quotas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "skin_id"
+    t.bigint "quota_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quota_id"], name: "index_skin_quotas_on_quota_id"
+    t.index ["skin_id"], name: "index_skin_quotas_on_skin_id"
+  end
+
+  create_table "skins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "enabled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "comments", "quotas"
   add_foreign_key "documents", "authors"
+  add_foreign_key "evaluates", "quotas"
   add_foreign_key "quotes", "authors"
   add_foreign_key "quotes", "documents"
   add_foreign_key "quotes", "quotas"
+  add_foreign_key "skin_quotas", "quotas"
+  add_foreign_key "skin_quotas", "skins"
 end
