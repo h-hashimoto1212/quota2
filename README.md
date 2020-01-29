@@ -3,6 +3,9 @@ SNS idea for People who likes and wants to quote
 whether someone famous or not, as well as themselves
 
 # Database
+
+<img src= 'quota_db.png'>
+
 - Quotas(works as user)
 
 | key | column      | type    | options    |
