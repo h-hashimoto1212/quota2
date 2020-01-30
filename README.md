@@ -1,24 +1,106 @@
-# README
+# Quota
+SNS idea for People who likes and wants to quote
+whether someone famous or not, as well as themselves
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Database
 
-Things you may want to cover:
+<img src= 'quota_db.png'>
 
-* Ruby version
+- Quotas(works as user)
 
-* System dependencies
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | name        | string  | null:false |
+|     | email       | string  |            |
 
-* Configuration
+has_many quotes  
+has_many comments  
+has_many evaluates  
+has_many skins  
+has_many skin_quotas  
+has_many pictures  
 
-* Database creation
+- Quotes
 
-* Database initialization
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | text        | text    | null:false |
+|     | description | text    |            |
+|     | selfquote   | boolean |            |
+| FK  | quota_id    | integer |            |
+| FK  | document_id | integer |            |
+| FK  | author_id   | integer |            |
 
-* How to run the test suite
+has_many pictures  
+has_many evaluates  
+has_many comments  
+belongs_to quota  
+belongs_to author  
+belongs_to document  
 
-* Services (job queues, cache servers, search engines, etc.)
+- Documents
 
-* Deployment instructions
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | name        | string  | null:false |
+|     | date        | string  |            |
 
-* ...
+has_many comments  
+has_many pictures  
+belongs_to author  
+
+- Authors
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | name        | string  | null:false |
+
+has_many comments  
+has_many pictures  
+has_many documents  
+
+- Skins
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | name        | string  | null:false |
+|     | description | text    | null:false |
+|     | enabled     | boolean |            |
+
+has_many quotas  
+has_many skin_quotas  
+
+- Pictures
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+|     | image       | string  | null:false |
+
+belongs_to imageable, polymorphic: true  
+
+- Evaluates
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+| FK  |quota_id     | integer |            |
+|     | like        | boolean |            |
+|     | dislike     | boolean |            |
+
+belongs_to evaluatable, polymorphic: true  
+
+- Comments
+
+| key | column      | type    | options    |
+|:----|:------------|:--------|:-----------|
+| PK  | id          | integer |            |
+| FK  |quota_id     | integer |            |
+|     | text        | text    | null:false |
+
+belongs_to commentable, polymorphic: true  
