@@ -1,14 +1,12 @@
-@import "variable";
 .main{
   height: calc(100vh - #{$headerHeight});
   width: 100vw;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   align-items: center;
+  background: transparent;
   &__menu{
-    position: relative;
+    top: 20vh;
     height: 40vh;
   }
-
 }
