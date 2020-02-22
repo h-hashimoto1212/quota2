@@ -4,14 +4,14 @@ if(!PIXI.utils.isWebGLSupported()){
 }
 
 let app = new PIXI.Application({
-  width: 600, 
-  height: 600,
+  width: window.innerWidth, 
+  height: window.innerHeight,
   transparent: true,
   antialias: true,
 });
 document.querySelector("#canvas").appendChild(app.view);
 
-let floor = app.screen.height/2;
+let floor = app.screen.height/2.5;
 let vertBlur = new PIXI.filters.BlurFilter();
   vertBlur.blurX = 0;
   vertBlur.blurY = 0;
@@ -31,9 +31,9 @@ function talk(){
   let talkTime = 0;
   let g = 0;
   app.ticker.add(function(){
-    hopTime += 0.3;
+    hopTime += 0.5;
     g += hopTime;
-    if(hopTime <= 2){
+    if(hopTime <= 3){
       quota.y -= 3 - g;
     }else{
       quota.y = floor;
@@ -111,7 +111,7 @@ function intro(){
     quota.y = 0;
     eyes.y = 12;
   }else if(count < 120){
-    if(quota.y - 10 < floor && squish < 1){
+    if(quota.y < floor && squish < 1){
       quota.fall += 1;
       quota.y += quota.fall;
       eyes.vy += 1.5;
@@ -125,30 +125,30 @@ function intro(){
       quota.fall -= 2;
       quota.scale.x += quota.fall/100;
       vertBlur.blurY = 0;
+      quota.y = floor;
     }else if(quota.scale.x > 0.9){
       quota.fall -= 4;
       quota.scale.x += quota.fall/100;
-      quota.y += quota.scale.y;
 
-    }else if(quota.y > 270){
-      quota.fall *= 1.3;
+    }else if(quota.y > floor - 2){
+      quota.fall *= 2;
       quota.y += quota.fall/10;
       vertBlur.blurY = quota.fall/5;
-    }else if(count < 150){
-      quota.fall *=0.8;
+    }else{
+      quota.fall *=0.9;
       quota.y += quota.fall/5;
       vertBlur.blurY = quota.fall/5;
     }
-  }else if(count < 100){
+  }else if(count < 120){
     quota.fall = 0;
   }else if(quota.y < floor){
-    quota.fall += 4.5;
+    quota.fall += 4;
     quota.y += quota.fall;
     vertBlur.blurY = quota.fall/5;
   }else if(count < 130 || quota.scale.x >= 1){
     quota.fall -= 2;
     quota.scale.x += quota.fall/100;
-    quota.y += quota.scale.y*0.5;
+    // quota.y += quota.scale.y*4;
     vertBlur.blurY = 0;
   }else{
     quota.fall = 0;
