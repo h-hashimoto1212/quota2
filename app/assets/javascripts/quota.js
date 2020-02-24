@@ -106,11 +106,11 @@ app.ticker.add(intro);
   
 function intro(){
   count += 0.5;
-  quota.scale.y = 1/quota.scale.x;
+  quota.scale.x = 1/quota.scale.y;
   if(count < 70){
     quota.y = 0;
     eyes.y = 12;
-  }else if(count < 120){
+  }else if(count < 150){
     if(quota.y < floor && squish < 1){
       quota.fall += 1;
       quota.y += quota.fall;
@@ -120,40 +120,28 @@ function intro(){
       if(eyes.y < -12 || eyes.y > 12){
         eyes.vy -= 1.5;
       }
-    }else if(quota.fall > 0){
-      squish += 1;
+    }else if(quota.fall > 0 && squish < 2){
+      squish = 1;
       quota.fall -= 2;
-      quota.scale.x += quota.fall/100;
+      quota.height -= quota.fall/3;
       vertBlur.blurY = 0;
       quota.y = floor;
-    }else if(quota.scale.x > 0.9){
+    }else if(quota.scale.x > 1){
       quota.fall -= 4;
-      quota.scale.x += quota.fall/100;
-
-    }else if(quota.y > floor - 2){
-      quota.fall *= 2;
-      quota.y += quota.fall/10;
+      quota.height -= quota.fall;
+      quota.y = floor;
+    }else if(quota.y <= floor){
+      squish = 2;
+      quota.fall += 1;
+      quota.y += quota.fall;
+      quota.height -= quota.fall/8;
       vertBlur.blurY = quota.fall/5;
     }else{
-      quota.fall *=0.9;
-      quota.y += quota.fall/5;
-      vertBlur.blurY = quota.fall/5;
+      squish = 1;
     }
-  }else if(count < 120){
-    quota.fall = 0;
-  }else if(quota.y < floor){
-    quota.fall += 4;
-    quota.y += quota.fall;
-    vertBlur.blurY = quota.fall/5;
-  }else if(count < 130 || quota.scale.x >= 1){
-    quota.fall -= 2;
-    quota.scale.x += quota.fall/100;
-    // quota.y += quota.scale.y*4;
-    vertBlur.blurY = 0;
-  }else{
-    quota.fall = 0;
-    quota.scale.x = 1;
+  }else if(quota.y == floor){
     quota.y = floor;
+    vertBlur.blurY = 0;
   }
 
   if(count == 160){
