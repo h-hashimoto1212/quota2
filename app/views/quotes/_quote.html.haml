@@ -1,33 +1,39 @@
+= javascript_tag do
+  quote = #{raw @quote.to_json};
 .quote
   .quote__header
     .quote__header__btns
-      .btn
+      %button#qButton{type: 'button'}
         Q
-      .btn
+      .popup#copied
+        Quote copied to clipboard
+      %button#gButton{type: 'button'}
         G
-      .btn
+      %button#dButton{type: 'button'}
         D
   .quote__content
     .quote__content__left
-      - if @quote.author && @quote.author.pictures.present?
-        = image_tag @quote.author.pictures.sample, size: "100x100"
-      - elsif @quote.document && @quote.document.pictures.present?
-        = image_tag @quote.document.pictures.sample, size: "100x100"
+      -# - if @quote.author && @quote.author.pictures.present?
+      -#   = image_tag @quote.author.pictures.sample, size: "100x100"
+      -# - elsif @quote.document && @quote.document.pictures.present?
+      -#   = image_tag @quote.document.pictures.sample, size: "100x100"
     .quote__content__text
       "#{@quote.text}"
       .quote__content__text__jp
     .quote__content__origin
       .origin__name
-        -if @quote.author.present?
+        -if @quote.author.name != ''
+          \-
           = @quote.author.name
         -elsif @quote.selfquote
           = @quote.quota.name
-      - if !@quote.selfquote && @quote.document.present?
+      - if !@quote.selfquote && @quote.document.name != ''
         .origin__document
+          \,
           = @quote.document.name
   .quote__footer
     .quote__footer__like
-      .btn
+      %button
         L
       .quote__footer__like__times
         0
