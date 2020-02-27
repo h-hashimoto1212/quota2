@@ -1,7 +1,9 @@
 class Quote < ApplicationRecord
   belongs_to :quota
-  belongs_to :document, optional: true
-  belongs_to :author, optional: true
+  has_one :document
+  accepts_nested_attributes_for :document
+  has_one :author
+  accepts_nested_attributes_for :author
   has_many :pictures, as: :imageable
   has_many :evaluates, as: :evaluatable
   has_many :comments, as: :commentable

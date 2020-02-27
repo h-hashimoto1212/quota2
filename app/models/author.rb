@@ -3,4 +3,5 @@ class Author < ApplicationRecord
   has_many :evaluates, as: :evaluatable
   has_many :comments, as: :commentable
   has_many :documents
+  belongs_to :quote, optional: true
 end

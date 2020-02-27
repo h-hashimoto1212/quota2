@@ -8,13 +8,13 @@
 
 Quota.create(
   name: "Quota",
-  email: "test@quota.com"
+  email: "test@quota.com",
 )
 
 9.times do
   Quota.create!(
     name: "#{Faker::Name.first_name}#{Faker::Number.number(digits: 4)}",
-    email: Faker::Internet.email
+    email: Faker::Internet.email,
   )
 end
 
@@ -24,16 +24,8 @@ end
     description: nil,
     selfquote: true,
     quota_id: Faker::Number.within(range: 1..10),
-    author_id: nil,
-    document_id: nil
   )
 end
-
-Document.create!(
-  id: 1,
-  name: "Dumb And Dumber",
-  date: "1994"
-)
 
 5.times do
   Quote.create!(
@@ -41,7 +33,30 @@ Document.create!(
     description: nil,
     selfquote: false,
     quota_id: Faker::Number.within(range: 2..10),
-    author_id: nil,
-    document_id: 1
+  )
+end
+
+15.times do |i|
+  Author.create!(
+    name: "",
+    quote_id: i+1,
+  )
+end
+
+10.times do |i|
+  Document.create!(
+    name: "",
+    date: "",
+    author_id: i+1,
+    quote_id: i+1,
+  )
+end
+
+5.times do |i|
+  Document.create!(
+    name: "Dumb And Dumber",
+    date: "1994",
+    author_id: i + 11,
+    quote_id: i + 11,
   )
 end
