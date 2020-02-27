@@ -24,42 +24,45 @@ header{
         bottom: 100px;
         height: 40px;
         width: 40px;
+        animation: fall;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
         &.q{
           height: 50px;
           width: 50px;
           background-color: #ff9999;
           left: 0;
-          animation: fall 2.8s;
+          animation-duration: 2.8s;
           animation-delay: 0.3s;
-          animation-fill-mode: forwards;
+          
         }
         &.u{
           background-color: #99ff99;
           left: 50px;
-          animation: fall 2.5s;
+          animation-duration: 2.5s;
           animation-delay: 0s;
-          animation-fill-mode: forwards;
+          
         }
         &.o{
           background-color: #9999ff;
           left: 90px;
-          animation: fall 2.3s;
+          animation-duration: 2.3s;
           animation-delay: 0.5s;
-          animation-fill-mode: forwards;
+          
         }
         &.t{
           background-color: #ff99ff;
           left: 130px;
-          animation: fall 1.5s;
+          animation-duration: 1.5s;
           animation-delay: 1s;
-          animation-fill-mode: forwards;
+          
         }
         &.a{
           background-color: #99ffff;
           left: 170px;
-          animation: fall 1.8s;
+          animation-duration: 1.8s;
           animation-delay: 0.1s;
-          animation-fill-mode: forwards;
+          
         }
       }
 

@@ -22,14 +22,10 @@
       display: flex;
       justify-content: flex-end;
       margin-right: 10px;
-      #quote_author_name{
+      .text_box{
         font-size: 15px;
         width: 200px;
-      }
-      #quote_document_name{
-        font-size: 15px;
-        width: 200px;
-        margin-left: 15px;
+        margin-left: 10px;
       }
     }
     #quote_description{
@@ -39,25 +35,9 @@
       font-size: 15px;
       resize: none;
     }
-    &__img{
-      margin: 10px auto;
-      text-align: center;
-      label{
-        cursor: pointer;
-      }
-      .file_form{
-        display: none;
-      }
-    }
     &__similar{
       text-align: center;
-    }
-    &__tags{
-      text-align: center;
-      margin: 10px;
-      #quote_tag{
-        font-size: 15px;
-      }
+      height: 100px;
     }
     .submit{
       border-style: none;
