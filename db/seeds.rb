@@ -18,7 +18,7 @@ Quota.create(
   )
 end
 
-10.times do
+15.times do
   Quote.create!(
     text: Faker::Quote.famous_last_words,
     description: nil,
@@ -27,36 +27,19 @@ end
   )
 end
 
+Source.create!(
+  name: "Dumb And Dumber",
+  date: "1994",
+)
+
 5.times do
   Quote.create!(
     text: Faker::TvShows::DumbAndDumber.quote,
     description: nil,
     selfquote: false,
     quota_id: Faker::Number.within(range: 2..10),
+    source_id: 1,
   )
 end
 
-15.times do |i|
-  Author.create!(
-    name: "",
-    quote_id: i+1,
-  )
-end
 
-10.times do |i|
-  Document.create!(
-    name: "",
-    date: "",
-    author_id: i+1,
-    quote_id: i+1,
-  )
-end
-
-5.times do |i|
-  Document.create!(
-    name: "Dumb And Dumber",
-    date: "1994",
-    author_id: i + 11,
-    quote_id: i + 11,
-  )
-end
