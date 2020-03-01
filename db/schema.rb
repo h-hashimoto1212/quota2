@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_094113) do
+ActiveRecord::Schema.define(version: 2020_02_29_020625) do
 
   create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -27,15 +27,6 @@ ActiveRecord::Schema.define(version: 2020_01_29_094113) do
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["quota_id"], name: "index_comments_on_quota_id"
-  end
-
-  create_table "documents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.integer "date"
-    t.bigint "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_id"], name: "index_documents_on_author_id"
   end
 
   create_table "evaluates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -72,12 +63,12 @@ ActiveRecord::Schema.define(version: 2020_01_29_094113) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "quota_id"
-    t.bigint "author_id"
-    t.bigint "document_id"
     t.text "description"
+    t.bigint "author_id"
+    t.bigint "source_id"
     t.index ["author_id"], name: "index_quotes_on_author_id"
-    t.index ["document_id"], name: "index_quotes_on_document_id"
     t.index ["quota_id"], name: "index_quotes_on_quota_id"
+    t.index ["source_id"], name: "index_quotes_on_source_id"
   end
 
   create_table "skin_quotas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -97,12 +88,18 @@ ActiveRecord::Schema.define(version: 2020_01_29_094113) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sources", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "comments", "quotas"
-  add_foreign_key "documents", "authors"
   add_foreign_key "evaluates", "quotas"
   add_foreign_key "quotes", "authors"
-  add_foreign_key "quotes", "documents"
   add_foreign_key "quotes", "quotas"
+  add_foreign_key "quotes", "sources"
   add_foreign_key "skin_quotas", "quotas"
   add_foreign_key "skin_quotas", "skins"
 end
