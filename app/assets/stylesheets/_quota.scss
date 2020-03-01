@@ -1,5 +1,6 @@
-a.quota{
-  margin-top: 25vh;
+.quota{
+  margin-top: 20vh;
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +10,43 @@ a.quota{
   width: 40px;
   color: #ffffff;
   text-decoration: none;
-  animation: hello 1s;
+  cursor: pointer;
+  &.active{
+    animation: spin 1s linear 0s infinite;
+    background-color: $quota_second_col;
+  }
+}
+.devider{
+  position: absolute;
+  background-color: #ffffff;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  transform: scale(0);
+  transition: 1s;
+  &.active{
+    transform: scale(1);
+  }
+  .plus{
+    background-color: #ffffff;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10px;
+    width: 40px;
+    z-index: 0;
+    &:after{
+      content: '';
+      background-color: #fff;
+      height: 40px;
+      width: 10px;
+    }
+  }
 }
 
 @keyframes hello {
@@ -21,4 +58,13 @@ a.quota{
     filter: blur(0);
     opacity: 1;
  }
+}
+
+@keyframes spin {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
 }

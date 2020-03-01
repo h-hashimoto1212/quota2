@@ -1,39 +1,38 @@
-= javascript_tag do
-  quote = #{raw @quote.to_json};
-.quote
+.quote.top.focus
   .quote__header
     .quote__header__btns
-      %button#qButton{type: 'button'}
+      %button.qButton{type: 'button'}
         Q
       .popup#copied
         Quote copied to clipboard
-      %button#gButton{type: 'button'}
+      %button.gButton{type: 'button'}
         G
-      %button#dButton{type: 'button'}
-        D
+      %button.sButton{type: 'button'}
+        S
   .quote__content
     .quote__content__left
       -# - if @quote.author && @quote.author.pictures.present?
       -#   = image_tag @quote.author.pictures.sample, size: "100x100"
-      -# - elsif @quote.document && @quote.document.pictures.present?
-      -#   = image_tag @quote.document.pictures.sample, size: "100x100"
-    .quote__content__text
-      "#{@quote.text}"
+      -# - elsif @quote.source && @quote.source.pictures.present?
+      -#   = image_tag @quote.source.pictures.sample, size: "100x100"
+    .quote__content__text.0
+
       .quote__content__text__jp
-    .quote__content__origin
-      .origin__name
-        -if @quote.author.name != ''
-          \-
-          = @quote.author.name
-        -elsif @quote.selfquote
-          = @quote.quota.name
-      - if !@quote.selfquote && @quote.document.name != ''
-        .origin__document
-          \,
-          = @quote.document.name
+    .quote__content__origin.0
+      -# .origin__name
+      -#   -if @author
+      -#     \-
+      -#     = link_to @author.name, '#aName' ,class: 'aName'
+      -#     - if @source
+      -#       \,
+      -#   -elsif @quote.selfquote
+      -#     = link_to @quote.quota.name, '#qName' , class: 'qName'
+      -# - if @source
+      -#   .origin__source
+      -#     = link_to @source.name, '#sName', class: 'sName'
   .quote__footer
     .quote__footer__like
-      %button
+      %button.like
         L
       .quote__footer__like__times
         0

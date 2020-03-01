@@ -1,0 +1,14 @@
+.new
+  .title
+    Post a Quote
+  = form_with model: @quote, class: 'new__quote', local: true do |f|
+    = f.text_area :text, placeholder: 'quote here', class: 'text_box'
+    .new__quote__origin
+      = f.fields_for :author, @author do |a|
+        = a.text_field :name, placeholder: 'person source', class: 'text_box'
+      = f.fields_for :source, @source do |s|
+        = s.text_field :name, placeholder: 'document source', class: 'text_box'
+    = f.text_area :description, placeholder: 'additional history to mension', class: 'text_box'
+    .new__quote__similar
+      similar quotes
+    = f.submit 'Quote!', class: 'submit'
