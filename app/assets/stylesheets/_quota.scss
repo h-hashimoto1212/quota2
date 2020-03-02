@@ -1,5 +1,6 @@
 .quota{
-  margin-top: 20vh;
+  left: 50vw;
+  top: 20vh;
   position: absolute;
   display: flex;
   align-items: center;
@@ -11,6 +12,7 @@
   color: #ffffff;
   text-decoration: none;
   cursor: pointer;
+  z-index: 1;
   &.active{
     animation: spin 1s linear 0s infinite;
     background-color: $quota_second_col;

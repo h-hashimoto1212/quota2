@@ -14,12 +14,9 @@
     .user_menu__setting
       user
 .main
-  = render partial: 'quota'
   = render partial: 'menu'
   .main__text
+    = render partial: 'quota'
     = render partial: 'quote'
-
-.new
-  = render partial: 'form'
 
 .mask.hidden

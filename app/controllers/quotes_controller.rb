@@ -1,13 +1,14 @@
 class QuotesController < ApplicationController
+
   def index
     @quotes = Quote.all
-    @quote = 	Quote.offset( rand(Quote.count) ).first
+    @quote = @quotes.offset( rand(Quote.count) ).first
     @uQuotes = @quotes.where(quota_id: @quote.quota_id)
-    @author = Author.find_by(id: @quote.author_id)
+    @author = @quote.author
     @aQuotes = @quotes.where(author_id: @author.id) if @author
-    @source = Source.find_by(id: @quote.source_id)
+    @source = @quote.source
     @sQuotes = @quotes.where(source_id: @source.id) if @source
-
+    # binding.pry
   end
 
   def new
@@ -18,15 +19,9 @@ class QuotesController < ApplicationController
 
   def create
     @quote = Quote.new(quote_params)
-    @quote.merge(author_attributes: [:name]) if @author
-    @quote.merge(source_attributes: [:name, :author_id]) if @source
-    if (@author || @source)
-      @quote.selfquote = 0
-    else
-      @quote.selfquote = 1
-    end
     if @quote.save
-      render :index
+      binding.pry
+      redirect_to root_path
     else
       render :new
     end
@@ -34,23 +29,16 @@ class QuotesController < ApplicationController
 
   def edit
     @quote = Quote.find(params[:id])
-    @author = Author.find_by(id: @quote.author_id)
+    @author = @quote.author
     @author = Author.new if @author.blank?
-    @source = Source.find_by(id: @quote.source_id)
+    @source = @quote.source
     @source = Source.new if @source.blank?
   end
 
   def update
     @quote = Quote.find(params[:id])
-    @quote.merge(author_attributes: [:name]) if @author
-    @quote.merge(source_attributes: [:name, :author_id]) if @source
-    if (@author || @source)
-      @quote.selfquote = 0
-    else
-      @quote.selfquote = 1
-    end
     if @quote.update(quote_params)
-      redirect_to action: :index
+      redirect_to root_path
     else
       render :edit
     end
@@ -59,9 +47,19 @@ class QuotesController < ApplicationController
   private
 
   def quote_params
-    params.require(:quote)
-      .permit(:text, :selfquote, :description)
-      .merge(quota_id: 1,)
+    proto = {}
+    attributes = [:text, :description]
+    merges = {quota_id: 1, selfquote: 0}
+    if params[:quote][:author_attributes][:name].present?
+      attributes.push(author_attributes: [:name])
+      merges.merge(selfquote: 0)
+    end
+    if params[:quote][:source_attributes][:name].present?
+      attributes.push(source_attributes: [:name, :date]) 
+      merges.merge(selfquote: 0)
+    end
+    proto = params.require(:quote).permit(attributes).merge(merges)
+    return proto
   end
 
 end

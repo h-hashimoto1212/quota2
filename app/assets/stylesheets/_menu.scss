@@ -8,7 +8,7 @@ ul.menu{
   top: 20%;
   left: 50%;
   opacity: 80%;
-  z-index: 2;
+  z-index: 3;
   transform: scale(0);
   &.active{
     animation: intro 1s;
