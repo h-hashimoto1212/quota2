@@ -4,8 +4,7 @@
 
 ## 実装機能
 - 名言表示機能
-データベース内の名言を１つランダムに表示します。
-![top_page](app/assets/images/top_page.png)
+データベース内の名言を１つランダムに表示します。  
 投稿者名をクリックすると同一投稿者の名言を一覧表示することもできます。
 ![top_page_list](app/assets/images/top_page_list.png)
 - 投稿/編集機能
