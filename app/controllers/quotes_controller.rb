@@ -1,14 +1,14 @@
 class QuotesController < ApplicationController
 
   def index
-    @quotes = Quote.all
-    @quote = @quotes.offset( rand(Quote.count) ).first
-    @uQuotes = @quotes.where(quota_id: @quote.quota_id)
+    # @quotes = Quote.all
+    @quote = Quote.offset( rand(Quote.count) ).first
+    other_quotes = Quote.where.not(id: @quote.id)
+    @uQuotes = other_quotes.where(quota_id: @quote.quota_id)
     @author = @quote.author
-    @aQuotes = @quotes.where(author_id: @author.id) if @author
+    @aQuotes = other_quotes.where(author_id: @author.id) if @author
     @source = @quote.source
-    @sQuotes = @quotes.where(source_id: @source.id) if @source
-    # binding.pry
+    @sQuotes = other_quotes.where(source_id: @source.id) if @source
   end
 
   def new
@@ -20,8 +20,7 @@ class QuotesController < ApplicationController
   def create
     @quote = Quote.new(quote_params)
     if @quote.save
-      binding.pry
-      redirect_to root_path
+      redirect_to root_path{ render}
     else
       render :new
     end

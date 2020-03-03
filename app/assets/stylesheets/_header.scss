@@ -6,7 +6,8 @@ header{
   align-items: flex-end;
   padding: 10px;
   position: fixed;
-  z-index: 2;
+  z-index: 300;
+  font-family: 'Lato', ;
   .title{
     display: flex;
     align-items: flex-end;
@@ -29,6 +30,11 @@ header{
         animation: fall;
         animation-timing-function: linear;
         animation-fill-mode: forwards;
+        transition: transform 1s;
+        &:hover{
+          transform: scale(1.5);
+          z-index: 301;
+        }
         &.q{
           height: 50px;
           width: 50px;

@@ -2,7 +2,7 @@ $(function(){
 
   var json;
   $.ajax({
-    url: 'quotes.json',
+    url: '/quotes.json',
     dataType: 'json',
     async: false,
     success: function(data){
@@ -53,7 +53,7 @@ $(function(){
   }
   let buildQuote = function(q, i){
     let html = 
-    `<div class="quote add">
+    `<div class="quote add ${i}">
       <div class="quote__header ${i}">
         <div class="quote__header__btns">
           <button class="qButton ${i}" type="button">
@@ -68,7 +68,7 @@ $(function(){
         </div>
         <div class="popup ${i}"></div>
       </div>
-      <div class="quote__content">
+      <div class="quote__content ${i}">
         <div class="quote__content__left"></div>
         <div class="quote__content__text ${i}">
           "${q.text}"
@@ -96,28 +96,35 @@ $(function(){
 
 
   function showOtherQuotes(e){
-
+    let top = $(`.quote.0`).position().top;
     if (json.quote.userName != e.data.name || e.data.top) {
       $.each(json.uQuotes, function(i, q) {
-        if (json.quote.id != q.id){
-          let html = buildQuote(q, i + 1);
-          $(".main__text").append(html);
-          appendOrigin(q, i + 1);
-          
-          $(`.qName.${ i + 1 }`).on("click", {name: q.userName}, showOtherQuotes);
-          $(".qName.0").on("click", function(){
-            $(".add").remove();
-            $(".qName.0").off();
-            $(".qName.0").on("click", {top: true, name: q.userName}, showOtherQuotes);
-          })
-          addButtonEvents(i + 1, q);
-        }
+
+        let html = buildQuote(q, i + 1);
+        $(".main__text").append(html);
+        appendOrigin(q, i + 1);
+
+        top += $(`.quote.${ i }`).height();
+
+        $(`.quote.${ i + 1 }`).animate({
+          top: `${top}`
+        }, 500 + (i * 150))
+        $(`.quote.${ i + 1}`).css("z-index", `${100 - (i + 1)}`);
+        
+        $(`.qName.${ i + 1 }`).on("click", {name: q.userName}, showOtherQuotes);
+        $(".qName.0").on("click", function(){
+          $(".add").remove();
+          $(".qName.0").off();
+          $(".qName.0").on("click", {top: true, name: q.userName}, showOtherQuotes);
+        })
+        addButtonEvents(i + 1, q);
+
       })
 
     }else{
       $(".add").remove();
       $(".qName.0").off();
-      $(".qName.0").on("click", {top: true, name: json.quote.userName}, showQuotaQuotes);
+      $(".qName.0").on("click", {top: true, name: json.quote.userName}, showOtherQuotes);
     }
 
   }

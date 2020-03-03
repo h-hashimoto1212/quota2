@@ -1,21 +1,37 @@
 ul.menu{
-  width: 150px;
+  // width: 150px;
   list-style: none;
-  background-color: #eeeeee;
+  background-color: #ffffff;
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
   font-size: 12px;
   padding: 5px;
-  position: absolute;
+  position: fixed;
   top: 20%;
   left: 50%;
-  opacity: 80%;
-  z-index: 3;
-  transform: scale(0);
+  visibility: hidden;
+  opacity: 0%;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+  transform: translate(-33% , -33%);
+  transition: opacity 1s;
   &.active{
-    animation: intro 1s;
-    animation-fill-mode: forwards;
+    visibility: visible;
+    opacity: 80%
   }
   li{
     margin: 5px;
     height: 15px;
+    color: #eeeeee;
+    transition: all .2s;
+    &:hover{
+      background-color: #ffcccc;
+    }
+    a{
+      color: #222222;
+      text-decoration: none;
+    }
   }
 }
