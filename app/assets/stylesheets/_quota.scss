@@ -1,26 +1,34 @@
 .quota{
-  left: 50vw;
-  top: 20vh;
-  position: absolute;
+  left: 50%;
+  top: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: $quota_main_col;
+  opacity: 90%;
   border-radius: 50%;
+  font-size: 25px;
+  font-family: 'Lato', ;
   height: 40px;
   width: 40px;
   color: #ffffff;
   text-decoration: none;
+  z-index: 250;
+  position: fixed;
   cursor: pointer;
-  z-index: 1;
+  transition: all .5s;
   &.active{
     animation: spin 1s linear 0s infinite;
+    top: 15%;
     background-color: $quota_second_col;
+  }
+  &:hover{
+    transform: scale(1.2);
   }
 }
 .devider{
   position: absolute;
-  background-color: #ffffff;
+  background-color: #ffffcc;
   color: #ffffff;
   display: flex;
   align-items: center;

@@ -1,9 +1,20 @@
 .quote{
   width: 50vw;
-  margin: auto;
-  // background-color: transparent;
+  position: absolute;
+  top: 25vh;
+  left: 50%;
+  transform: translateX(-50%);
   &.top{
+    z-index: 100;
     animation: intro 1.5s;
+  }
+  &.add{
+    transform: scale(0.95) translateX(-52.5%);
+    opacity: 50%;
+    transition: opacity .5s;
+    &:hover{
+      opacity: 100%;
+    }
   }
   &__header{
     position: relative;
@@ -17,11 +28,12 @@
   &__content{
     display: flex;
     position: relative;
-    margin: 10px 0;
+    margin: 2px 0;
     padding: 10px;
     border: 2px solid;
     border-radius: 20px;
     border-color: #dddddd;
+    background-color: #fff;
     transform: scale(1);
     transition: transform 0.5s;
     &:hover{
@@ -71,7 +83,7 @@
   &__footer{
     height: 20px;
     justify-content: flex-end;
-    animation: intro .5s ease-in 1s;
+    animation: foot 1s ease-in 1s;
     animation-fill-mode: backwards;
     &__like{
       height: 20px;
@@ -92,7 +104,7 @@
     right: 0;
     padding: 10px;
     white-space: nowrap;
-    background-color: rgba(255, 100, 100, 0.8);
+    background-color: rgba(255, 150, 150, 0.8);
     border-radius: 10px;
     font-size: 13px;
     opacity: 0%;
@@ -115,10 +127,10 @@ button{
   border-radius: 25%;
   cursor: pointer;
   outline: none;
-  animation: intro .5s;
-  animation-fill-mode: backwards;
   transition: all .5s;
   &.qButton{
+    animation: jump .5s;
+    animation-fill-mode: backwards;
     animation-delay: 1.2s;
     &:hover{
       background-color: #aaffaa;
@@ -127,6 +139,8 @@ button{
     }
   }
   &.gButton{
+    animation: jump .5s;
+    animation-fill-mode: backwards;
     animation-delay: 1.3s;
     &:hover{
       background-color: #aaffff;
@@ -135,6 +149,8 @@ button{
     }
   }
   &.sButton{
+    animation: jump .5s;
+    animation-fill-mode: backwards;
     animation-delay: 1.4s;
     &:hover{
       background-color: #aaaaff;
@@ -175,21 +191,39 @@ button{
 
 @keyframes intro{
   from{
-    transform: scale(0,0);
+    transform: scale(0,0) translateX(-50%);
   }
   50%{
-    transform: scale(1,0);
+    transform: scale(1,0) translateX(-50%);
   }
   to{
-    transform: scale(1,1);
+    transform: scale(1,1) translateX(-50%);
   }
 }
 
 @keyframes jump{
   from{
-    bottom: -30px;
+    transform: translateY(30px);
   }
   to{
-    bottom: 0;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes foot{
+  from{
+    transform: translateY(-20px);
+  }
+  to{
+    transform: translateY(0px);
+  }
+}
+
+@keyframes slide_in{
+  from{
+    left: -100%;
+  }
+  to{
+    left: 0;
   }
 }
