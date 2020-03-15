@@ -20,6 +20,21 @@
   //   }
   // }
 }
+h3{
+  color: #aaaaaa;
+  font-size: 17px;
+  padding-bottom: 5px;
+}
+
+input, textarea{
+  transition: all .8s;
+  background-color: #ffffff;
+  &:focus{
+    transform: scale(1.05);
+    outline: none;
+    background-color: #eeeeee;
+  }
+}
 
 .mask{
   background: #000000;

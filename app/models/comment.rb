@@ -1,4 +1,6 @@
 class Comment < ApplicationRecord
-  belongs_to :quota
   belongs_to :commentable, polymorphic: true
+  belongs_to :quota
+
+  validates :text, presence: true
 end

@@ -1,12 +1,9 @@
 .quote.top.0
   .quote__header.0
     .quote__header__btns
-      %button.qButton.0{type: 'button'}
-        Q
-      %button.gButton.0{type: 'button'}
-        G
-      %button.sButton.0{type: 'button'}
-        S
+      %button.qButton.0{type: 'button'} Q
+      %button.gButton.0{type: 'button'} G
+      %button.cButton.0{type: 'button'} C
     .popup.0
   .quote__content.top
     .quote__content__left
@@ -15,7 +12,7 @@
       -# - elsif @quote.source && @quote.source.pictures.present?
       -#   = image_tag @quote.source.pictures.sample, size: "100x100"
     .quote__content__text.0
-
+      = @quote.text
       .quote__content__text__jp
     .quote__content__origin.0
       -# .origin__name
@@ -35,3 +32,18 @@
         L
       .quote__footer__like__times
         0
+  .comments.0
+    .comments__header
+      %h3 Comments
+      %button.close{type: 'button'} X
+    - @comments.each do |comment|
+      .comments__each
+        = comment.text
+        .comments__each__quota
+          posted by
+          %span #{comment.quota.name},
+          at #{comment.updated_at}
+    = form_with model: [@quote, @comment], class: 'comment_form', local: true do |f|
+      %button.nButton.0{type: 'button'} N
+      = f.text_field :text, class: 'comment__text'
+      = f.submit '', class: 'submit'
