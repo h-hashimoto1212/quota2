@@ -4,6 +4,7 @@ $(function(){
 
   $(".quota").on('click', clicked);
   function clicked(){
+    $(".add").remove();
     spin();
   }
   function spin(){
@@ -22,6 +23,7 @@ $(function(){
       $(".quota").removeClass("active");
       $(".menu").removeClass("active");
       $(".devider").removeClass("active");
+      $('.comment_box').addClass('hidden');
     })
 
   }

@@ -10,18 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_29_020625) do
-
-  create_table "authors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2020_01_29_094113) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "quota_id"
     t.string "commentable_type"
     t.bigint "commentable_id"
+    t.bigint "quota_id"
     t.text "text", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,16 +53,15 @@ ActiveRecord::Schema.define(version: 2020_02_29_020625) do
 
   create_table "quotes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "text", null: false
+    t.string "author"
+    t.string "source"
+    t.string "date"
     t.boolean "selfquote"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "quota_id"
     t.text "description"
-    t.bigint "author_id"
-    t.bigint "source_id"
-    t.index ["author_id"], name: "index_quotes_on_author_id"
     t.index ["quota_id"], name: "index_quotes_on_quota_id"
-    t.index ["source_id"], name: "index_quotes_on_source_id"
   end
 
   create_table "skin_quotas", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -88,18 +81,9 @@ ActiveRecord::Schema.define(version: 2020_02_29_020625) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "sources", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.string "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "comments", "quotas"
   add_foreign_key "evaluates", "quotas"
-  add_foreign_key "quotes", "authors"
   add_foreign_key "quotes", "quotas"
-  add_foreign_key "quotes", "sources"
   add_foreign_key "skin_quotas", "quotas"
   add_foreign_key "skin_quotas", "skins"
 end

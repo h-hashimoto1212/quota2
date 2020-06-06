@@ -4,12 +4,9 @@
   = form_with model: @quote, class: 'form__quote', local: true do |f|
     = f.text_area :text, placeholder: 'quote here', class: 'text_box'
     .form__quote__origin
-      = f.fields_for :author, @author do |a|
-        = a.text_field :name, placeholder: 'person source', class: 'text_box', id: 'author'
-      -# = f.text_field :author_name, placeholder: 'person source', class: 'text_box', id: 'author'
-      = f.fields_for :source, @source do |s|
-        = s.text_field :name, placeholder: 'document source', class: 'text_box'
-        = s.text_field :date, placeholder: 'source date', class: 'text_box', id: 'source'
+      = f.text_field :author, placeholder: 'person source', class: 'text_box', id: 'author'
+      = f.text_field :source, placeholder: 'document source', class: 'text_box'
+      = f.text_field :date, placeholder: 'source date', class: 'text_box', id: 'source'
     = f.text_area :description, placeholder: 'additional history to mension', class: 'text_box'
     .form__quote__similar
       similar quotes

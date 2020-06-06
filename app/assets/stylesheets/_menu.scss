@@ -15,7 +15,7 @@ ul.menu{
   justify-content: center;
   align-items: center;
   z-index: 1100;
-  transform: translate(-33% , -33%);
+  transform: translate(-50% , -50%);
   transition: opacity 1s;
   &.active{
     visibility: visible;

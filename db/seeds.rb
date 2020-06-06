@@ -27,18 +27,14 @@ end
   )
 end
 
-Source.create!(
-  name: "Dumb And Dumber",
-  date: "1994",
-)
-
 5.times do
   Quote.create!(
     text: Faker::TvShows::DumbAndDumber.quote,
     description: nil,
     selfquote: false,
-    quota_id: Faker::Number.within(range: 2..10),
-    source_id: 1,
+    source: "Dumb And Dumber",
+    date: "1994",
+    quota_id: Faker::Number.within(range: 1..10),
   )
 end
 

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
   root 'quotes#index'
-  resources :quotes
+  resources :quotes do
+    resources :comments
+  end
 end
