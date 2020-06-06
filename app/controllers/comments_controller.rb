@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
 
   def create
     @quote = Quote.find(params[:quote_id])
-    redirect_to (@quote) if @comment = Comment.create(comment_params)
   end
 
   private
