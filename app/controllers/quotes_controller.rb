@@ -7,7 +7,7 @@ class QuotesController < ApplicationController
 
   def show
     @quote = Quote.find(params[:id])
-    other_quotes = Quote.where.not(id: @quote.id)
+    other_quotes = Quote.where.not(id: @quote.id).includes(:quota, :comments)
     @uQuotes = other_quotes.where(quota_id: @quote.quota_id)
     @aQuotes = other_quotes.where(author: @quote.author)
     @sQuotes = other_quotes.where(source: @quote.source)
